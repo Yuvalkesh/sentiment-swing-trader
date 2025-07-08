@@ -32,7 +32,8 @@ function App() {
   };
 
   useEffect(() => {
-    const websocket = new WebSocket('ws://localhost:3001');
+    const wsUrl = process.env.REACT_APP_WS_URL || 'ws://localhost:3001';
+    const websocket = new WebSocket(wsUrl);
     
     websocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
@@ -105,7 +106,8 @@ function App() {
   const fetchPortfolio = async () => {
     try {
       setIsLoading(prev => ({ ...prev, portfolio: true }));
-      const response = await fetch('http://localhost:3001/api/portfolio');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/portfolio`);
       const data = await response.json();
       if (data.success) {
         setPortfolio(data.data);
@@ -122,7 +124,8 @@ function App() {
 
   const fetchTrades = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/trades');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/trades`);
       const data = await response.json();
       if (data.success) {
         setTrades(data.data);
@@ -136,7 +139,8 @@ function App() {
     try {
       setIsLoading(prev => ({ ...prev, sentiment: true }));
       addNotification('Refreshing sentiment analysis...', 'info');
-      const response = await fetch('http://localhost:3001/api/sentiment');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/sentiment`);
       const data = await response.json();
       if (data.success) {
         setSentimentData(data.data.slice(0, 10));
@@ -154,7 +158,8 @@ function App() {
 
   const fetchSettings = async () => {
     try {
-      const response = await fetch('http://localhost:3001/api/settings');
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/settings`);
       const data = await response.json();
       if (data.success) {
         setSettings(data.data);
@@ -169,7 +174,8 @@ function App() {
       setIsLoading(prev => ({ ...prev, trading: true }));
       addNotification('Executing trades based on sentiment analysis...', 'info');
       
-      const response = await fetch('http://localhost:3001/api/trade/execute', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/trade/execute`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -193,7 +199,8 @@ function App() {
 
   const updateSettings = async (newSettings) => {
     try {
-      const response = await fetch('http://localhost:3001/api/settings', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/api/settings`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
