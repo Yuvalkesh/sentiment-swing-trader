@@ -1,0 +1,27 @@
+{
+  "name": "sentiment-trader-backend",
+  "version": "1.0.0",
+  "description": "Backend API for sentiment swing trader",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "build": "echo 'Backend build complete'"
+  },
+  "dependencies": {
+    "@alpacahq/alpaca-trade-api": "^3.0.0",
+    "@anthropic-ai/sdk": "^0.24.3",
+    "axios": "^1.6.0",
+    "cheerio": "^1.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "node-cron": "^3.0.3",
+    "pg": "^8.11.3",
+    "puppeteer": "^24.12.0",
+    "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

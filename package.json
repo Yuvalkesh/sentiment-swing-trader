@@ -1,0 +1,25 @@
+{
+  "name": "sentiment-swing-trader",
+  "version": "1.0.0",
+  "description": "AI-powered sentiment analysis swing trading app",
+  "main": "backend/src/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "heroku-postbuild": "npm run build:frontend",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install"
+  },
+  "keywords": ["trading", "sentiment", "ai", "stocks", "fintech"],
+  "author": "Yuval",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
